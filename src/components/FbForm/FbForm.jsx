@@ -41,33 +41,52 @@ export function FbForm() {
         {({
           values,
           handleChange,
-          handleBlur,
           handleSubmit,
-          status,
           setStatus,
-        }) => (
-          <>
-            <form onSubmit={handleSubmit}>
-              <FbFieldList
-                values={values}
-                handleChange={(e) => {
-                  const { name } = e.target;
-                  handleChange(e);
+          status,
+        }) => {
+          const handleFieldChange = (e) => {
+            const { name, value } = e.target;
+            handleChange(e);
 
-                  if (status?.errors?.[name]) {
-                    const newErrors = { ...status.errors };
-                    delete newErrors[name];
-                    setStatus({ ...status, errors: newErrors });
-                  }
-                }}
-                handleBlur={handleBlur}
-                errors={status?.errors}
-              />
-              <FbSubmitSection />
-            </form>
-            <FbAddUser data={status?.submittedData} />
-          </>
-        )}
+            if (status?.errors?.[name]) {
+              const newErrors = { ...status.errors };
+              delete newErrors[name];
+              setStatus({ ...status, errors: newErrors });
+            }
+          };
+
+          const handleFieldBlur = (e) => {
+            const { name, value } = e.target;
+            const requiredFields = ["firstName", "LastName", "email", "password", "confirmPassword"];
+            const newErrors = { ...status?.errors };
+
+            if (requiredFields.includes(name) && !value) {
+              newErrors[name] = "Required";
+            } else if (name === "confirmPassword" && value !== values.password) {
+              newErrors.confirmPassword = "Passwords don't match!";
+            } else {
+              delete newErrors[name];
+            }
+
+            setStatus({ ...status, errors: newErrors });
+          };
+
+          return (
+            <>
+              <form onSubmit={handleSubmit}>
+                <FbFieldList
+                  values={values}
+                  handleChange={handleFieldChange}
+                  handleBlur={handleFieldBlur}
+                  errors={status?.errors}
+                />
+                <FbSubmitSection />
+              </form>
+              <FbAddUser data={status?.submittedData} />
+            </>
+          );
+        }}
       </Formik>
     </div>
   );
