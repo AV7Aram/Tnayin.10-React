@@ -1,0 +1,11 @@
+.fb_Form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #dadde1;
+    box-sizing: border-box;
+    padding: 16px;
+    position: relative;
+    width: 432px;
+}

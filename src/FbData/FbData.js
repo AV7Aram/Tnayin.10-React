@@ -1,0 +1,48 @@
+export const FbData = [
+    {
+        id: 1,
+        name: "firstName",
+        type: "text",
+        placeholder: "First Name",
+        errorMessage: "What's your name?",
+        required: true,
+    },
+    {
+        id: 2,
+        name: "LastName",
+        type: "text",
+        placeholder: "Last Name",
+        errorMessage: "What's your name?",
+        required: true,
+    },
+    {
+        id: 3,
+        name: "email",
+        type: "email",
+        placeholder: "Email",
+        errorMessage: "You'll use this when you log in and if you ever need to rest your password",
+        required: true,
+    },
+    {
+        id: 4,
+        name: "birthday",
+        type: "date",
+        placeholder: "Birthday",
+    },
+    {
+        id: 5,
+        name: "password",
+        type: "password",
+        placeholder: "Password",
+        errorMessage: "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &)",
+        required: true,
+    },
+    {
+        id: 6,
+        name: "confirmPassword",
+        type: "password",
+        placeholder: "Confirm Password",
+        errorMessage: "Passwords don't match!",
+        required: true,
+    },
+];
